@@ -1,0 +1,48 @@
+<form class="example-form" [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="flex">
+    <mat-form-field class="example-full-width" color="accent">
+      <mat-label>Dividendo</mat-label>
+      <input
+        type="number"
+        matInput
+        formControlName="dividendo"
+        [errorStateMatcher]="matcher"
+        placeholder="Ej: 1234"
+      />
+      <mat-error *ngIf="form.controls['dividendo'].hasError('required')">
+        El dividendo es <strong>obligatorio</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Divisor</mat-label>
+      <input
+        type="number"
+        matInput
+        formControlName="divisor"
+        [errorStateMatcher]="matcher"
+        placeholder="Ej: 12"
+      />
+      <mat-error *ngIf="form.controls['divisor'].hasError('required')">
+        El divisor es <strong>obligatorio</strong>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          !form.controls['divisor'].hasError('required') &&
+          form.controls['divisor'].hasError('majorTo')
+        "
+      >
+        El divisor debe ser <strong>menor al dividendo</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-error class="self-left" *ngIf="form.hasError('majorTo')">
+      El divisor debe ser <strong>menor al dividendo</strong>
+    </mat-error>
+  </div>
+  <div class="buttons flex">
+    <button mat-raised-button color="primary">DIVIDIR!</button>
+    <button type="button" mat-raised-button color="accent" (click)="reset()">
+      RESET
+    </button>
+  </div>
+</form>
