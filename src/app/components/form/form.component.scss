@@ -1,14 +1,26 @@
 .example-form {
-  display: flex;
-  justify-content: space-between;
   padding: 20px;
   border-bottom: solid 1px rgba(black, 0.1);
   position: relative;
+  @media screen and (min-width: 600px) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 .flex {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+.form-flex {
+  .mat-form-field {
+    width: 100%;
+  }
+  @media screen and (min-width: 450px) {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
 }
 
 .example-full-width {
