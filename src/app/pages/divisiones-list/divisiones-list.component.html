@@ -1,0 +1,15 @@
+<div *ngIf="divisiones.length > 0; else noData">
+  <ul>
+    <li *ngFor="let division of divisiones; let i = index">
+      <a
+        mat-raised-button
+        [routerLink]="'/' + division.dividendo + '/' + division.divisor"
+      >
+        {{ division.dividendo }} / {{ division.divisor }}</a
+      >
+    </li>
+  </ul>
+</div>
+<ng-template #noData>
+  <p>no data</p>
+</ng-template>

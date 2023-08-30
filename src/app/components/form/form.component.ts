@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'src/app/helpers/custom.validators';
 import { MyErrorStateMatcher } from 'src/app/helpers/my-error-state-matcher';
@@ -10,6 +10,7 @@ import { Result } from 'src/app/models/result.interface';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  @Input() par!: Result;
   @Output() res = new EventEmitter<Result>();
   @Output() resetEvent = new EventEmitter<void>();
   form!: FormGroup;
@@ -25,6 +26,10 @@ export class FormComponent implements OnInit {
       },
       { validators: [CustomValidators.isMajorTo()] }
     );
+    if (!!this.par) {
+      this.form.setValue(this.par);
+      this.submitForm();
+    }
   }
 
   submitForm() {

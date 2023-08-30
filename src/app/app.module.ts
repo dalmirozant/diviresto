@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
-import { BodyComponent } from './components/body/body.component';
+import { BodyComponent } from './pages/body/body.component';
 import { FormComponent } from './components/form/form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,9 +14,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { RestasComponent } from './components/restas/restas.component';
 import { RestaComponent } from './components/resta/resta.component';
+import { DivisionesListComponent } from './pages/divisiones-list/divisiones-list.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, BodyComponent, FormComponent, RestasComponent, RestaComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    BodyComponent,
+    FormComponent,
+    RestasComponent,
+    RestaComponent,
+    DivisionesListComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
