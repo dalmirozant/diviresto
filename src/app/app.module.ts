@@ -14,7 +14,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { RestasComponent } from './components/restas/restas.component';
 import { RestaComponent } from './components/resta/resta.component';
-import { DivisionesListComponent } from './pages/divisiones-list/divisiones-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { DivisionesListComponent } from './pages/divisiones-list/divisiones-list
     FormComponent,
     RestasComponent,
     RestaComponent,
-    DivisionesListComponent,
   ],
   imports: [
     BrowserModule,

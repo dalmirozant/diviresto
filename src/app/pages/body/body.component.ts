@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, filter, map, takeUntil } from 'rxjs';
 import { Result } from 'src/app/models/result.interface';
-import { DivisionesService } from 'src/app/services/divisiones.service';
 
 @Component({
   selector: 'app-body',
@@ -15,11 +14,7 @@ export class BodyComponent implements OnInit, OnDestroy {
 
   destroyed$ = new Subject<boolean>();
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private divisionesService: DivisionesService
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap
@@ -53,10 +48,6 @@ export class BodyComponent implements OnInit, OnDestroy {
     this.calculo();
     this.procesar(this.result.minimo!);
     this.procesarLoop();
-    this.divisionesService.divisiones = [
-      ...this.divisionesService.divisiones,
-      { dividendo, divisor },
-    ];
   }
 
   onReset() {
