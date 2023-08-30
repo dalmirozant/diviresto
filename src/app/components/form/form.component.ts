@@ -21,7 +21,7 @@ export class FormComponent implements OnInit {
     this.form = this.fb.group(
       {
         dividendo: ['', [Validators.required]],
-        divisor: [11, [Validators.required, Validators.min(11)]],
+        divisor: ['', [Validators.required, Validators.min(10)]],
       },
       { validators: [CustomValidators.isMajorTo()] }
     );
@@ -36,7 +36,7 @@ export class FormComponent implements OnInit {
   reset(): void {
     this.form.reset({
       dividendo: '',
-      divisor: 11,
+      divisor: '',
     });
     this.resetEvent.emit();
   }
