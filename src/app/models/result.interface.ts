@@ -5,13 +5,15 @@ export interface Result {
   cocienteInt?: number;
   resto?: number;
   minimo?: number;
-  restante?: number | null;
+  restante?: string | null;
+  restas: Resta[];
 }
 
 export interface Resta {
+  minimo?: number;
   cocienteParcial?: number;
   producto?: number;
   resta?: number;
-  numeroAdd?: number;
+  numeroAdd?: string | null;
   numeroCompleto?: number;
 }

@@ -4,6 +4,14 @@
       <span class="minimo">{{ result.minimo }}</span
       ><span class="restante">{{ result.restante }}</span>
     </p>
+    <hr />
+    <div class="restas-list" *ngIf="result.restas.length > 0">
+      <app-resta
+        [resta]="resta"
+        class="resta dividendo"
+        *ngFor="let resta of result.restas"
+      ></app-resta>
+    </div>
   </div>
   <div class="derecha">
     <span class="divisor block">{{ result.divisor }}</span>

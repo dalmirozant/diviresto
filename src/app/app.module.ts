@@ -13,9 +13,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { RestasComponent } from './components/restas/restas.component';
+import { RestaComponent } from './components/resta/resta.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, BodyComponent, FormComponent, RestasComponent],
+  declarations: [AppComponent, HeaderComponent, BodyComponent, FormComponent, RestasComponent, RestaComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
