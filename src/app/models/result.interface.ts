@@ -6,7 +6,7 @@ export interface Result {
   resto?: number;
   minimo?: number;
   restante?: string | null;
-  restas: Resta[];
+  restas?: Resta[];
 }
 
 export interface Resta {

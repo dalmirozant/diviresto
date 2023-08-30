@@ -5,7 +5,7 @@
       ><span class="restante">{{ result.restante }}</span>
     </p>
     <hr />
-    <div class="restas-list" *ngIf="result.restas.length > 0">
+    <div class="restas-list" *ngIf="result.restas!.length > 0">
       <app-resta
         [resta]="resta"
         class="resta dividendo"

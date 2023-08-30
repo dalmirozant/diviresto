@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'src/app/helpers/custom.validators';
 import { MyErrorStateMatcher } from 'src/app/helpers/my-error-state-matcher';
@@ -10,6 +10,7 @@ import { Result } from 'src/app/models/result.interface';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  @Input() par!: Result;
   @Output() res = new EventEmitter<Result>();
   @Output() resetEvent = new EventEmitter<void>();
   form!: FormGroup;
@@ -21,10 +22,14 @@ export class FormComponent implements OnInit {
     this.form = this.fb.group(
       {
         dividendo: ['', [Validators.required]],
-        divisor: [11, [Validators.required, Validators.min(11)]],
+        divisor: ['', [Validators.required, Validators.min(10)]],
       },
       { validators: [CustomValidators.isMajorTo()] }
     );
+    if (!!this.par) {
+      this.form.setValue(this.par);
+      this.submitForm();
+    }
   }
 
   submitForm() {
@@ -36,7 +41,7 @@ export class FormComponent implements OnInit {
   reset(): void {
     this.form.reset({
       dividendo: '',
-      divisor: 11,
+      divisor: '',
     });
     this.resetEvent.emit();
   }
