@@ -11,6 +11,7 @@ import { Result } from 'src/app/models/result.interface';
 })
 export class FormComponent implements OnInit {
   @Output() res = new EventEmitter<Result>();
+  @Output() resetEvent = new EventEmitter<void>();
   form!: FormGroup;
   matcher = new MyErrorStateMatcher();
 
@@ -37,5 +38,6 @@ export class FormComponent implements OnInit {
       dividendo: '',
       divisor: 11,
     });
+    this.resetEvent.emit();
   }
 }

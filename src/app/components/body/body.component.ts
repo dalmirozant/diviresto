@@ -7,7 +7,7 @@ import { Result } from 'src/app/models/result.interface';
   styleUrls: ['./body.component.scss'],
 })
 export class BodyComponent {
-  result!: Result;
+  result!: Result | undefined;
   constructor() {}
 
   onResult(formValue: Result) {
@@ -24,17 +24,20 @@ export class BodyComponent {
     this.calculo();
     this.procesar(this.result.minimo!);
     this.procesarLoop();
-    console.log('RESPUESTA: ', this.result);
+  }
+
+  onReset() {
+    this.result = undefined;
   }
 
   private calculo(): void {
-    const dividendoString = this.result.dividendo.toString();
+    const dividendoString = this.result!.dividendo.toString();
     const largoDividendo = dividendoString.length;
     for (let i = 1; i <= largoDividendo; i++) {
       let min = parseInt(dividendoString.substring(0, i));
-      if (min / this.result.divisor >= 1) {
-        this.result.minimo = min;
-        this.result.restante =
+      if (min / this.result!.divisor >= 1) {
+        this.result!.minimo = min;
+        this.result!.restante =
           i < largoDividendo ? dividendoString.substring(i) : null;
         break;
       }
@@ -43,10 +46,10 @@ export class BodyComponent {
 
   private procesar(minimo: number, numeroAdd?: string): void {
     const nuevoMinimo = numeroAdd ? parseInt(`${minimo}${numeroAdd}`) : minimo;
-    const cocienteParcial = Math.trunc(nuevoMinimo / this.result.divisor);
-    const producto = cocienteParcial * this.result.divisor;
+    const cocienteParcial = Math.trunc(nuevoMinimo / this.result!.divisor);
+    const producto = cocienteParcial * this.result!.divisor;
     const resta = nuevoMinimo - producto;
-    this.result.restas.push({
+    this.result!.restas.push({
       minimo,
       numeroAdd,
       cocienteParcial,
@@ -55,12 +58,12 @@ export class BodyComponent {
     });
   }
 
-  procesarLoop(): void {
-    const restanteLength = this.result.restante?.length;
+  private procesarLoop(): void {
+    const restanteLength = this.result!.restante?.length;
     for (let i = 0; i < restanteLength!; i++) {
       this.procesar(
-        this.result.restas[this.result.restas.length - 1].resta!,
-        this.result.restante?.substring(i, i + 1)
+        this.result!.restas[this.result!.restas.length - 1].resta!,
+        this.result!.restante?.substring(i, i + 1)
       );
     }
   }
