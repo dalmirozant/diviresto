@@ -1,5 +1,11 @@
 # DiviResto
 
+## Se puede ver andando en el siguiente enlace
+
+https://divi-resto.netlify.app/
+
+##Readme angular
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
 ## Development server
