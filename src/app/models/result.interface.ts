@@ -4,6 +4,7 @@ export interface Result {
   cociente?: number;
   cocienteInt?: number | string;
   resto?: number;
+  restoParcial?: number;
   minimo?: number;
   restante?: string | null;
   restas?: Resta[];

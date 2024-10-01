@@ -64,7 +64,7 @@ export class BodyComponent implements OnInit, OnDestroy {
    * @returns el número con la cantidad de decimales definida
    */
   truncarDecimales(numero: number, decimales: number | undefined): string {
-    if (!decimales || decimales === 0) return numero.toString();
+    if (!decimales || decimales === 0) return Math.trunc(numero).toString();
     const factor = Math.pow(10, decimales);
     return (Math.trunc(numero * factor) / factor).toFixed(decimales);
   }
@@ -97,6 +97,7 @@ export class BodyComponent implements OnInit, OnDestroy {
     const cocienteParcial = Math.trunc(nuevoMinimo / this.result!.divisor);
     const producto = cocienteParcial * this.result!.divisor;
     const resta = nuevoMinimo - producto;
+    this.result!.restoParcial = resta;
     this.result!.restas!.push({
       minimo,
       numeroAdd,

@@ -11,7 +11,10 @@
         class="resta dividendo"
         *ngFor="let resta of result.restas"
       ></app-resta>
-      <p>{{ result.resto }}</p>
+      <p *ngIf="result.decimales! > 0">
+        Resto con decimales: {{ result.restoParcial }}
+      </p>
+      <p>Resto cociente entero: {{ result.resto }}</p>
     </div>
   </div>
   <div class="derecha">
