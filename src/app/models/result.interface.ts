@@ -1,5 +1,5 @@
 export interface Result {
-  dividendo?: number;
+  dividendo: number;
   divisor: number;
   cociente?: number;
   cocienteInt?: number;
