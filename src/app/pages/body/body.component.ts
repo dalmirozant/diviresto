@@ -37,22 +37,36 @@ export class BodyComponent implements OnInit, OnDestroy {
   onResult(formValue: Result) {
     const dividendo = formValue.dividendo;
     const divisor = formValue.divisor;
+    const decimales = formValue.decimales;
     this.result = {
       dividendo,
       divisor,
       cociente: dividendo / divisor,
-      cocienteInt: Math.trunc(dividendo / divisor),
+      cocienteInt: this.truncarDecimales(dividendo / divisor, decimales),
       resto: dividendo % divisor,
       restas: [],
+      decimales,
     };
     this.calculo();
     this.procesar(this.result.minimo!);
-    this.procesarLoop();
+    this.procesarLoop(this.result.decimales);
   }
 
   onReset() {
     this.result = undefined;
     this.router.navigateByUrl('/');
+  }
+
+  /**
+   * Devuelve un número decimal con la cantidad definida sin ceros y sin redondear
+   * @param numero
+   * @param decimales
+   * @returns el número con la cantidad de decimales definida
+   */
+  truncarDecimales(numero: number, decimales: number | undefined): string {
+    if (!decimales || decimales === 0) return numero.toString();
+    const factor = Math.pow(10, decimales);
+    return (Math.trunc(numero * factor) / factor).toFixed(decimales);
   }
 
   private calculo(): void {
@@ -69,7 +83,16 @@ export class BodyComponent implements OnInit, OnDestroy {
     }
   }
 
-  private procesar(minimo: number, numeroAdd?: string): void {
+  /**
+   * Se toma la última resta y se le concatena el siguiente dígito
+   * @param minimo
+   * @param numeroAdd
+   */
+  private procesar(
+    minimo: number,
+    numeroAdd?: string,
+    esDecimal?: boolean
+  ): void {
     const nuevoMinimo = numeroAdd ? parseInt(`${minimo}${numeroAdd}`) : minimo;
     const cocienteParcial = Math.trunc(nuevoMinimo / this.result!.divisor);
     const producto = cocienteParcial * this.result!.divisor;
@@ -80,15 +103,17 @@ export class BodyComponent implements OnInit, OnDestroy {
       cocienteParcial,
       producto,
       resta,
+      esDecimal,
     });
   }
 
-  private procesarLoop(): void {
+  private procesarLoop(decimales: number = 0): void {
     const restanteLength = this.result!.restante?.length;
-    for (let i = 0; i < restanteLength!; i++) {
+    for (let i = 0; i < restanteLength! + decimales; i++) {
       this.procesar(
         this.result!.restas![this.result!.restas!.length - 1].resta!,
-        this.result!.restante?.substring(i, i + 1)
+        i < restanteLength! ? this.result!.restante?.substring(i, i + 1) : '0',
+        i >= restanteLength!
       );
     }
   }

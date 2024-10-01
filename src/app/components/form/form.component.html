@@ -34,6 +34,29 @@
         El divisor debe ser <strong>menor al dividendo</strong>
       </mat-error>
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Decimales</mat-label>
+      <input
+        type="number"
+        max="10"
+        min="0"
+        formControlName="decimales"
+        matInput
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="form.controls['decimales'].hasError('required')">
+        Campo obligatorio
+      </mat-error>
+      <mat-error *ngIf="form.controls['decimales'].hasError('negative')">
+        min 0 max 10
+      </mat-error>
+      <mat-error *ngIf="form.controls['decimales'].hasError('notInteger')">
+        Debe ser entero
+      </mat-error>
+      <mat-error *ngIf="form.controls['decimales'].hasError('notNumber')">
+        Debe ser un número válido
+      </mat-error>
+    </mat-form-field>
 
     <mat-error class="self-left" *ngIf="form.hasError('majorTo')">
       El divisor debe ser <strong>menor al dividendo</strong>

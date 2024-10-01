@@ -1,0 +1,13 @@
+.resta-container {
+  position: relative;
+  .es-decimal {
+    position: absolute;
+    font-size: 0.3em;
+    color: #ef6464;
+    top: -19px;
+    right: 0;
+  }
+  &.container-decimal {
+    opacity: 0.8;
+  }
+}

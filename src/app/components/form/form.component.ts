@@ -23,8 +23,14 @@ export class FormComponent implements OnInit {
       {
         dividendo: ['', [Validators.required]],
         divisor: ['', [Validators.required, Validators.min(10)]],
+        decimales: [0, Validators.required],
       },
-      { validators: [CustomValidators.isMajorTo()] }
+      {
+        validators: [
+          CustomValidators.isMajorTo(),
+          CustomValidators.intPositive(),
+        ],
+      }
     );
     if (!!this.par) {
       this.form.setValue(this.par);
@@ -42,6 +48,7 @@ export class FormComponent implements OnInit {
     this.form.reset({
       dividendo: '',
       divisor: '',
+      decimales: 0,
     });
     this.resetEvent.emit();
   }

@@ -1,4 +1,9 @@
-<div class="resta-container" *ngIf="resta">
+<div
+  class="resta-container"
+  *ngIf="resta"
+  [ngClass]="{ 'container-decimal': resta.esDecimal }"
+>
+  <span class="es-decimal" *ngIf="resta.esDecimal"> ES DECIMAL</span>
   <p>
     <span class="minimo">{{ resta.minimo }}</span
     ><span class="restante">{{ resta.numeroAdd }}</span>

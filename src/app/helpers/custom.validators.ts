@@ -20,4 +20,19 @@ export class CustomValidators {
       return null;
     };
   }
+
+  static intPositive(): ValidatorFn {
+    return (controls: AbstractControl): ValidationErrors | null => {
+      const decimales = controls.get('decimales')?.value;
+      if (typeof parseInt(decimales) !== 'number') {
+        return { notNumber: true };
+      } else if (parseInt(decimales) < 0) {
+        return { negative: true };
+      } else if (parseFloat(decimales) - parseInt(decimales) > 0) {
+        return { notInteger: true };
+      }
+
+      return null;
+    };
+  }
 }

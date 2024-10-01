@@ -2,11 +2,12 @@ export interface Result {
   dividendo: number;
   divisor: number;
   cociente?: number;
-  cocienteInt?: number;
+  cocienteInt?: number | string;
   resto?: number;
   minimo?: number;
   restante?: string | null;
   restas?: Resta[];
+  decimales?: number;
 }
 
 export interface Resta {
@@ -16,4 +17,5 @@ export interface Resta {
   resta?: number;
   numeroAdd?: string | null;
   numeroCompleto?: number;
+  esDecimal?: boolean;
 }
