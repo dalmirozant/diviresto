@@ -1,6 +1,8 @@
-<p>
-  <span class="minimo">{{ resta.minimo }}</span
-  ><span class="restante">{{ resta.numeroAdd }}</span>
-</p>
-<p>- {{ resta.producto }}</p>
-<hr />
+<div class="resta-container" *ngIf="resta">
+  <p>
+    <span class="minimo">{{ resta.minimo }}</span
+    ><span class="restante">{{ resta.numeroAdd }}</span>
+  </p>
+  <p>- {{ resta.producto }}</p>
+  <hr />
+</div>

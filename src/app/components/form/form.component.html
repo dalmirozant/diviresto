@@ -40,7 +40,14 @@
     </mat-error>
   </div>
   <div class="buttons flex">
-    <button mat-raised-button color="primary">DIVIDIR!</button>
+    <button
+      class="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!form.valid"
+    >
+      DIVIDIR!
+    </button>
     <button type="button" mat-raised-button color="accent" (click)="reset()">
       RESET
     </button>
