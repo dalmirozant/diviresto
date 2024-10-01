@@ -11,14 +11,21 @@
         class="resta dividendo"
         *ngFor="let resta of result.restas"
       ></app-resta>
-      <p *ngIf="result.decimales! > 0">
-        Resto con decimales: {{ result.restoParcial }}
+      <p *ngIf="result.decimales! > 0; else restoEntero">
+        {{ result.restoParcial }}
       </p>
-      <p>Resto cociente entero: {{ result.resto }}</p>
     </div>
   </div>
   <div class="derecha">
     <span class="divisor block">{{ result.divisor }}</span>
-    <span class="cociente block">{{ result.cocienteInt }}</span>
+    <span
+      class="cociente block"
+      [ngClass]="{ pequeno: result.cocienteInt!.toString().length > 8 }"
+      >{{ result.cocienteInt }}</span
+    >
   </div>
 </div>
+
+<ng-template #restoEntero>
+  <p>{{ result.resto }}</p>
+</ng-template>
