@@ -7,6 +7,17 @@ describe('RestasComponent', () => {
   let component: RestasComponent;
   let fixture: ComponentFixture<RestasComponent>;
 
+  const createMockResult = (): Result => ({
+    dividendo: 125,
+    divisor: 5,
+    minimo: 12,
+    restante: '5',
+    restas: [],
+    decimales: 0,
+    resto: 0,
+    cocienteInt: '25',
+  });
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RestasComponent],
@@ -18,22 +29,13 @@ describe('RestasComponent', () => {
   });
 
   it('should create', () => {
+    component.result = createMockResult();
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('should render minimo and restante from result input', () => {
-    const mockResult: Result = {
-      dividendo: 125,
-      divisor: 5,
-      minimo: 12,
-      restante: '5',
-      restas: [],
-      decimales: 0,
-      resto: 0,
-    };
-
-    component.result = mockResult;
+    component.result = createMockResult();
     fixture.detectChanges();
 
     const compiled: HTMLElement = fixture.nativeElement;
