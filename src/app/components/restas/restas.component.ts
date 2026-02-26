@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Result } from 'src/app/models/result.interface';
 
 @Component({
@@ -6,12 +6,6 @@ import { Result } from 'src/app/models/result.interface';
   templateUrl: './restas.component.html',
   styleUrls: ['./restas.component.scss'],
 })
-export class RestasComponent implements OnInit {
+export class RestasComponent {
   @Input() result!: Result;
-
-  constructor() {}
-
-  ngOnInit(): void {
-    console.log(this.result);
-  }
 }

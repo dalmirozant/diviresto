@@ -12,7 +12,7 @@ export class BodyComponent implements OnInit, OnDestroy {
   result: Result | undefined;
   par!: Result;
 
-  destroyed$ = new Subject<boolean>();
+  private destroyed$ = new Subject<void>();
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
@@ -26,12 +26,13 @@ export class BodyComponent implements OnInit, OnDestroy {
       .subscribe(([dividendo, divisor]) => {
         if (Number.isNaN(dividendo) || Number.isNaN(divisor))
           this.router.navigateByUrl('/');
-        else this.par = { dividendo, divisor };
+        else this.par = { dividendo, divisor, decimales: 0 };
       });
   }
 
   ngOnDestroy(): void {
-    this.destroyed$.next(true);
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   onResult(formValue: Result) {
